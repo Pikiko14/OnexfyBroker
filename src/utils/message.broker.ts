@@ -52,7 +52,7 @@ class MessageBroker {
         queue,
         Buffer.from(JSON.stringify(message))
       );
-      console.log("Message published successfully:", message);
+      console.log("Message published successfully:", message.trigger);
     } catch (err) {
       console.error("Failed to publish message:", err);
     }
