@@ -66,6 +66,15 @@ class OnexfyBroker {
    * Inicia el consumo de mensajes de la cola de notificaciones
    */
   async startConsuming(): Promise<void> {
+    console.log("Consuming messages...");
+    messageBroker.consumeMessage("onexfy_chatox", async (message: MessageBrokerInterface) => {
+      try {
+        console.log(message)
+        // get message data
+      } catch (error) {
+        // Manejar el error según sea necesario
+      }
+    });
   }
 
   /**

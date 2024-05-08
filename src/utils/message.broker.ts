@@ -24,7 +24,7 @@ class MessageBroker {
       try {
         const connection: Connection = await amqp.connect(configuration.get('RABITMQ_URL') || "amqp://localhost");
         this.channel = await connection.createChannel();
-        await this.channel.assertQueue(configuration.get('BROKER_CHANNEL') || "notifications");
+        await this.channel.assertQueue(configuration.get('BROKER_CHANNEL') || "chatox_onexfy", { durable: true });
         console.log("RabbitMQ connected");
 
         // Configurar prefetch
