@@ -3,6 +3,7 @@ import RoutesIndex from './routes';
 import cors, { CorsOptions } from 'cors';
 import express, { Application } from 'express';
 import messageBroker from './utils/message.broker';
+import { MessageServices } from './services/messages/message.service';
 import configuration from './configuration/configuration';
 import { MessageBrokerInterface } from './interfaces/broker.interface';
 
@@ -16,6 +17,7 @@ class OnexfyBroker {
   private readonly PORT: number | string;
   /** The path to the route directory */
   private readonly routeDirectoryPath: string;
+  protected readonly messageService: MessageServices;
 
   /**
    * Creates a new instance of the server
@@ -23,6 +25,7 @@ class OnexfyBroker {
   constructor() {
     this.app = express();
     this.connectToRabbitMQ();
+    this.messageService = new MessageServices();
     this.PORT = parseInt(configuration.get('PORT')) || 3000; // Default port
     this.routeDirectoryPath = path.join(__dirname, './routes'); // Path to your routes directory
   }
@@ -69,7 +72,7 @@ class OnexfyBroker {
     console.log("Consuming messages...");
     messageBroker.consumeMessage("onexfy_chatox", async (message: MessageBrokerInterface) => {
       try {
-        console.log(message)
+        await this.messageService.sendMessage(message);
         // get message data
       } catch (error) {
         // Manejar el error según sea necesario
