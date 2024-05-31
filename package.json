@@ -6,7 +6,7 @@
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1",
         "dev": "nodemon ./src/app.ts",
-        "build": "dotenv -e .env tsc --outDir dist"
+        "build": "tsc --outDir dist"
     },
     "author": "",
     "license": "ISC",
