@@ -17,7 +17,7 @@ export class BrokerService {
 
             // send message to broker
             const message = await messageBroker.publishMessage(
-                configuration.get('BROKER_CHANNEL') || "chatox",
+                configuration.get('BROKER_CHANNEL') || "chatox_onexfy",
                 body
             );
 
