@@ -16,7 +16,8 @@ export class ButtonMessage {
       "Aprobar",
       "Proceder",
       'Si confirmo',
-      'Acceder'
+      'Acceder',
+      'Si Confirmo',
     ];
   }
 
